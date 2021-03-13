@@ -12,24 +12,20 @@ const HomePageHeader = () => {
 
 const Drop = ({ name, creator, collectionName, date, url, minPrice, marketplace, category }) => {
   return (
-    <table>
-      <tbody>
-        <tr>
-          <td>
-            <h5>{name}</h5>
-          </td>
-          <td>
-            <h5>{marketplace}</h5>
-          </td>
-          <td>
-            <h4>{minPrice}</h4>
-          </td>
-          <td>
-            <p>{date}</p>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <tr>
+      <td>
+        <h5>{name}</h5>
+      </td>
+      <td>
+        <h5>{marketplace}</h5>
+      </td>
+      <td>
+        <h4>{minPrice}</h4>
+      </td>
+      <td>
+        <p>{date}</p>
+      </td>
+    </tr>
   );
 };
 
@@ -38,21 +34,33 @@ export const Drops = () => {
     <>
       <HomePageHeader />
       <div className="drop-container">
-        {dropData.map((drop, key) => {
-          return (
-            <Drop 
-              key = {key}
-              name = {drop.name}
-              creator = {drop.creator} 
-              collectionName = {drop.collectionName} 
-              date = {drop.date} 
-              url = {drop.url}
-              minPrice = {drop.minPrice} 
-              marketplace = {drop.marketplace} 
-              category = {drop.category} 
-            />
-          )
-        })}
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Marketplace</th>
+              <th>Min Price</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {dropData.map((drop, key) => {
+              return (
+                <Drop 
+                  key = {key}
+                  name = {drop.name}
+                  creator = {drop.creator} 
+                  collectionName = {drop.collectionName} 
+                  date = {drop.date} 
+                  url = {drop.url}
+                  minPrice = {drop.minPrice} 
+                  marketplace = {drop.marketplace} 
+                  category = {drop.category} 
+                />
+              )
+            })}
+          </tbody>
+        </table>
       </div>
     </>
   );

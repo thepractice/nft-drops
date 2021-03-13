@@ -19,12 +19,27 @@
   margin-top: 3em;
 }
 
+/*
 table {
   display: flex;
   justify-content: center;
   border: 1px solid gray;
 }
+
 td {
   border: 1px solid gray;
   width: 30em;
+}
+*/
+table {
+  margin: 0 auto;
+}
+
+thead {
+  background: black;
+  color: white;
+}
+
+tbody tr:nth-child(even) {
+  background: #d4d4d4;
 }
