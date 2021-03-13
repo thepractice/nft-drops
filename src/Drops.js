@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import { dropData } from "./data";
 
@@ -10,11 +10,52 @@ const HomePageHeader = () => {
   );
 };
 
+
+
+
+
 const Drop = ({ name, creator, collectionName, date, url, minPrice, marketplace, category }) => {
+
+  const calculateTimeLeft = (date) => {
+    let year = new Date().getFullYear();
+    const difference = +new Date(date) - +new Date();
+    let timeLeft = {}
+    if (difference > 0) {
+      timeLeft = {
+        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+        minutes: Math.floor((difference / 1000 / 60) % 60),
+        seconds: Math.floor((difference / 1000) % 60)
+      };
+    }
+    return timeLeft;
+  }
+
+  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft(date));
+
+  useEffect(() => {
+    setTimeout(() => {
+      setTimeLeft(calculateTimeLeft(date));
+    }, 1000);
+  });
+
+  const timerComponents = [];
+  Object.keys(timeLeft).forEach((interval) => {
+    if (!timeLeft[interval]) {
+      return;
+    }
+  
+    timerComponents.push(
+      <span>
+        {timeLeft[interval]} {interval}{" "}
+      </span>
+    );
+  });
+
   return (
     <tr>
       <td>
-        <h5>{name}</h5>
+        <h5><a href={url}>{name}</a></h5>
       </td>
       <td>
         <h5>{marketplace}</h5>
@@ -24,6 +65,9 @@ const Drop = ({ name, creator, collectionName, date, url, minPrice, marketplace,
       </td>
       <td>
         <p>{date}</p>
+      </td>
+      <td>
+        <p>{timerComponents.length ? timerComponents : <span>Time's up!</span>}</p>
       </td>
     </tr>
   );
@@ -41,6 +85,7 @@ export const Drops = () => {
               <th>Marketplace</th>
               <th>Min Price</th>
               <th>Date</th>
+              <th>Time remaining</th>
             </tr>
           </thead>
           <tbody>

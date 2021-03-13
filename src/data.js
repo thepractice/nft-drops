@@ -1,5 +1,15 @@
 export const dropData = [
   {
+    name: "test",
+    creator: "test",
+    collectionName: "test",
+    date: "March 13, 2021 17:00:00",
+    url: "test",
+    minPrice: 0,
+    marketplace: "test",
+    category: "test",
+  },
+  {
     name: "YOU ONLY LOVED ME WHEN WE WERE HIGH COLLECTION by Marius Sperlich",
     creator: "Marius Sperlich",
     collectionName: "YOU ONLY LOVED ME WHEN WE WERE HIGH COLLECTION by Marius Sperlich",
