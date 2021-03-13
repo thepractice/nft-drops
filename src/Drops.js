@@ -10,22 +10,16 @@ const HomePageHeader = () => {
   );
 };
 
-
-
-
-
 const Drop = ({ name, creator, collectionName, date, url, minPrice, marketplace, category }) => {
 
   const calculateTimeLeft = (date) => {
-    let year = new Date().getFullYear();
     const difference = +new Date(date) - +new Date();
     let timeLeft = {}
     if (difference > 0) {
       timeLeft = {
         days: Math.floor(difference / (1000 * 60 * 60 * 24)),
         hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-        minutes: Math.floor((difference / 1000 / 60) % 60),
-        seconds: Math.floor((difference / 1000) % 60)
+        minutes: Math.floor((difference / 1000 / 60) % 60)
       };
     }
     return timeLeft;
@@ -46,7 +40,7 @@ const Drop = ({ name, creator, collectionName, date, url, minPrice, marketplace,
     }
   
     timerComponents.push(
-      <span>
+      <span key={interval}>
         {timeLeft[interval]} {interval}{" "}
       </span>
     );
@@ -74,6 +68,7 @@ const Drop = ({ name, creator, collectionName, date, url, minPrice, marketplace,
 };
 
 export const Drops = () => {
+  console.log({dropData})
   return (
     <>
       <HomePageHeader />
@@ -89,7 +84,10 @@ export const Drops = () => {
             </tr>
           </thead>
           <tbody>
-            {dropData.map((drop, key) => {
+            {dropData.sort((a, b) => {
+              return +new Date(a.date) - +new Date(b.date)
+              }).map((drop, key) => {
+              console.log({drop})
               return (
                 <Drop 
                   key = {key}
