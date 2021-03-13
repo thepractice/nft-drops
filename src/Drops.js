@@ -97,8 +97,11 @@ export const Drops = () => {
           </thead>
           <tbody>
             {dropData
-              .sort((a, b) => {
-                return +new Date(a.date) - +new Date(b.date);
+              .filter(drop => {
+                return +new Date(drop.date) - +new Date() > 0;
+              })
+              .sort((dropA, dropB) => {
+                return +new Date(dropA.date) - +new Date(dropB.date);
               })
               .map((drop, key) => {
                 console.log({ drop });
