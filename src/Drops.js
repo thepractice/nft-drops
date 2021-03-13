@@ -10,11 +10,19 @@ const HomePageHeader = () => {
   );
 };
 
-const Drop = ({ name, creator, collectionName, date, url, minPrice, marketplace, category }) => {
-
-  const calculateTimeLeft = (date) => {
+const Drop = ({
+  name,
+  creator,
+  collectionName,
+  date,
+  url,
+  minPrice,
+  marketplace,
+  category
+}) => {
+  const calculateTimeLeft = date => {
     const difference = +new Date(date) - +new Date();
-    let timeLeft = {}
+    let timeLeft = {};
     if (difference > 0) {
       timeLeft = {
         days: Math.floor(difference / (1000 * 60 * 60 * 24)),
@@ -23,7 +31,7 @@ const Drop = ({ name, creator, collectionName, date, url, minPrice, marketplace,
       };
     }
     return timeLeft;
-  }
+  };
 
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft(date));
 
@@ -34,11 +42,11 @@ const Drop = ({ name, creator, collectionName, date, url, minPrice, marketplace,
   });
 
   const timerComponents = [];
-  Object.keys(timeLeft).forEach((interval) => {
+  Object.keys(timeLeft).forEach(interval => {
     if (!timeLeft[interval]) {
       return;
     }
-  
+
     timerComponents.push(
       <span key={interval}>
         {timeLeft[interval]} {interval}{" "}
@@ -49,7 +57,9 @@ const Drop = ({ name, creator, collectionName, date, url, minPrice, marketplace,
   return (
     <tr>
       <td>
-        <h5><a href={url}>{name}</a></h5>
+        <h5>
+          <a href={url}>{name}</a>
+        </h5>
       </td>
       <td>
         <h5>{marketplace}</h5>
@@ -61,14 +71,16 @@ const Drop = ({ name, creator, collectionName, date, url, minPrice, marketplace,
         <p>{date}</p>
       </td>
       <td>
-        <p>{timerComponents.length ? timerComponents : <span>Time's up!</span>}</p>
+        <p>
+          {timerComponents.length ? timerComponents : <span>Time's up!</span>}
+        </p>
       </td>
     </tr>
   );
 };
 
 export const Drops = () => {
-  console.log({dropData})
+  console.log({ dropData });
   return (
     <>
       <HomePageHeader />
@@ -84,24 +96,26 @@ export const Drops = () => {
             </tr>
           </thead>
           <tbody>
-            {dropData.sort((a, b) => {
-              return +new Date(a.date) - +new Date(b.date)
-              }).map((drop, key) => {
-              console.log({drop})
-              return (
-                <Drop 
-                  key = {key}
-                  name = {drop.name}
-                  creator = {drop.creator} 
-                  collectionName = {drop.collectionName} 
-                  date = {drop.date} 
-                  url = {drop.url}
-                  minPrice = {drop.minPrice} 
-                  marketplace = {drop.marketplace} 
-                  category = {drop.category} 
-                />
-              )
-            })}
+            {dropData
+              .sort((a, b) => {
+                return +new Date(a.date) - +new Date(b.date);
+              })
+              .map((drop, key) => {
+                console.log({ drop });
+                return (
+                  <Drop
+                    key={key}
+                    name={drop.name}
+                    creator={drop.creator}
+                    collectionName={drop.collectionName}
+                    date={drop.date}
+                    url={drop.url}
+                    minPrice={drop.minPrice}
+                    marketplace={drop.marketplace}
+                    category={drop.category}
+                  />
+                );
+              })}
           </tbody>
         </table>
       </div>
