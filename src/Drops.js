@@ -29,6 +29,7 @@ const Drop = ({
         hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
         minutes: Math.floor((difference / 1000 / 60) % 60),
         seconds: Math.floor((difference / 1000) % 60)
+        //seconds: ((difference / 1000) % 60).toFixed(1)
       };
     }
     return timeLeft;
@@ -43,15 +44,22 @@ const Drop = ({
   });
 
   const timerComponents = [];
+  console.log('timeLeft', timeLeft)
   Object.keys(timeLeft).forEach(interval => {
     if (!timeLeft[interval]) {
-      return;
+      //return;
     }
 
     timerComponents.push(
-      <span key={interval}>
-        {timeLeft[interval]} {interval}{" "}
-      </span>
+      <div key={interval}>
+        <div className='top'>
+          {timeLeft[interval]}
+        </div>
+        <div className='bottom'>
+          {interval}
+        </div>
+         
+      </div>
     );
   });
 
@@ -75,10 +83,8 @@ const Drop = ({
       <td>
         <p>{date}</p>
       </td>
-      <td>
-        <p>
-          {timerComponents.length ? timerComponents : <span>Time's up!</span>}
-        </p>
+      <td className='timer-wrapper'>
+        {timerComponents.length ? timerComponents : <span>Time's up!</span>}
       </td>
     </tr>
   );
