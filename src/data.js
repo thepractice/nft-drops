@@ -5,7 +5,7 @@ export const dropData = [
     collectionName: "Bitcoin Origins",
     date: "July 23, 2021 13:00:00",
     url: "https://www.btcorigins.com/",
-    minPrice: 0,
+    minPrice: 20,
     marketplace: "Atomic Assets",
     category: "Trading Cards",
   },

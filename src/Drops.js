@@ -27,7 +27,8 @@ const Drop = ({
       timeLeft = {
         days: Math.floor(difference / (1000 * 60 * 60 * 24)),
         hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-        minutes: Math.floor((difference / 1000 / 60) % 60)
+        minutes: Math.floor((difference / 1000 / 60) % 60),
+        seconds: Math.floor((difference / 1000) % 60)
       };
     }
     return timeLeft;
@@ -57,15 +58,19 @@ const Drop = ({
   return (
     <tr>
       <td>
-        <h5>
+        <p>
           <a href={url}>{name}</a>
-        </h5>
+        </p>
       </td>
       <td>
-        <h5>{marketplace}</h5>
+        <p>{collectionName}</p>
+      </td>
+
+      <td>
+        <p>{marketplace}</p>
       </td>
       <td>
-        <h4>{minPrice}</h4>
+        <p>${minPrice}</p>
       </td>
       <td>
         <p>{date}</p>
@@ -89,6 +94,7 @@ export const Drops = () => {
           <thead>
             <tr>
               <th>Name</th>
+              <th>Collection</th>
               <th>Marketplace</th>
               <th>Min Price</th>
               <th>Date</th>
