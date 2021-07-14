@@ -1,5 +1,15 @@
 export const dropData = [
   {
+    name: "Jonathan Thunder",
+    creator: "Jonathan Thunder",
+    collectionName: "Jonathan Thunder",
+    date: "July 14, 2021 18:30:00",
+    url: "https://niftygateway.com/",
+    minPrice: null,
+    marketplace: "Nifty Gateway",
+    category: "Trading Cards",
+  },
+  {
     name: "Moment 7",
     creator: "Bitcoin Origins",
     collectionName: "Bitcoin Origins",
